@@ -1,0 +1,25 @@
+{{#each hits}}
+  <li class="gallery-item" id="{{id}}">
+    <div class="picture-container">
+      <img src="{{webformatURL}}" alt="{{tags}}" data-large-img="{{largeImageURL}}">
+    </div>
+    <ul class="picture-info">
+      <li class="picture-info__item">
+        <span class="material-icons">thumb_up</span>
+        {{likes}}
+      </li>
+      <li class="picture-info__item">
+        <span class="material-icons">visibility</span>   
+        {{views}}     
+      </li>
+      <li class="picture-info__item">
+        <span class="material-icons">comment</span> 
+        {{comments}}   
+      </li>
+      <li class="picture-info__item">
+        <span class="material-icons">cloud_download</span> 
+        {{downloads}}  
+      </li>
+    </ul>
+  </li>        
+{{/each}}

@@ -1,0 +1,30 @@
+{
+  "name": "hw-13",
+  "version": "1.0.0",
+  "description": "",
+  "scripts": {
+    "start": "parcel src/index.html",
+    "build": "parcel build src/index.html"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/KolyaKolyaKolyadnica/hw-13.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/KolyaKolyaKolyadnica/hw-13/issues"
+  },
+  "homepage": "https://github.com/KolyaKolyaKolyadnica/hw-13#readme",
+  "devDependencies": {
+    "@pnotify/core": "^5.2.0",
+    "parcel": "^2.7.0",
+    "parcel-plugin-handlebars-precompile": "^1.0.2",
+    "parcel-transformer-hbs": "^1.0.4"
+  },
+  "dependencies": {
+    "basiclightbox": "^5.0.4",
+    "handlebars": "^4.7.7"
+  }
+}
