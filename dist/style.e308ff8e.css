@@ -8,6 +8,10 @@ li {
 body {
   overflow-x: hidden;
 }
+.dark {
+  background-color: rgb(30, 30, 30);
+  color: rgb(212, 212, 212);
+}
 .wrapper {
   width: 100vw;
   overflow: hidden;
@@ -33,13 +37,18 @@ header {
 
   box-shadow: 1px 1px 8px #47536f;
   transition: all 500ms;
+  z-index: 1;
 }
 header:hover {
   box-shadow: 1px 1px 18px #47536f;
 }
+header.dark {
+  background-color: rgb(20, 20, 20);
+}
+
 button {
   background-color: #47536f;
-  color: white;
+  color: rgb(210, 218, 224);
   border: none;
   text-align: center;
   text-decoration: none;
@@ -48,7 +57,7 @@ button {
 
 .option-load {
   width: 10%;
-  /* min-width: 5%; */
+  min-width: 100px;
 }
 .option-load > button {
   display: flex;
@@ -63,7 +72,7 @@ button {
   width: 10%;
 }
 .theme > button {
-  background-color: #ffffff;
+  background-color: #ffffff00;
   color: rgb(0, 0, 0);
   border: none;
   text-align: center;
@@ -98,6 +107,7 @@ button {
   outline: none;
   font-size: 24px;
   transition: all 500ms;
+  background: rgb(247, 247, 247);
 }
 .search-input:focus {
   box-shadow: inset 1px 1px 8px #47536f;
@@ -108,6 +118,7 @@ button {
   outline: 1px solid #000;
 }
 .search-btn > span {
+  color: rgb(210, 218, 224);
   transform: scale(1.5);
 }
 
@@ -117,8 +128,14 @@ button {
   display: flex;
   justify-content: center;
   align-items: center;
+}
 
-  /* border: 1px solid #000; */
+.content {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  overflow: hidden;
 }
 
 .requests {
@@ -133,13 +150,11 @@ button {
   border-radius: 5px;
   border: 1px solid #000;
 }
-.content {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-direction: column;
-  overflow: hidden;
+.requests.dark > li {
+  background-color: rgb(30, 30, 30);
+  border: 1px solid rgb(212, 212, 212);
 }
+
 .load-more-btn {
   padding: 10px;
   display: none;
@@ -174,7 +189,6 @@ button {
   width: 90%;
 }
 .gallery-item {
-  /* margin-top: 40px; */
   margin-bottom: 40px;
   box-shadow: 1px 1px 8px #47536f;
   transition: all 500ms;
@@ -211,6 +225,7 @@ button {
 }
 .material-icons {
   margin-right: 5px;
+  color: #47536f;
 }
 
 /* basicLightbox */

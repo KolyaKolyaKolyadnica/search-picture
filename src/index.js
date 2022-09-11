@@ -16,6 +16,7 @@ const refs = {
   searchForm: document.querySelector(".search-form"),
   searchInput: document.querySelector(".search-input"),
   searchBtn: document.querySelector(".search-btn"),
+  themeBtn: document.querySelector(".theme-btn"),
   output: document.querySelector(".content"),
   requests: document.querySelector(".requests"),
   gallery: document.querySelector(".gallery"),
@@ -24,6 +25,33 @@ const refs = {
 
 refs.searchForm.addEventListener("submit", startSearching);
 refs.optionLoad.addEventListener("click", changeLoadMethod);
+refs.themeBtn.addEventListener("click", changeTheme);
+
+if (!localStorage.interfaceTheme || localStorage.interfaceTheme === "light") {
+  removeDarkTheme();
+} else {
+  addDarkTheme();
+}
+
+function changeTheme() {
+  if (localStorage.interfaceTheme === "dark") {
+    localStorage.setItem("interfaceTheme", "light");
+    removeDarkTheme();
+  } else {
+    localStorage.setItem("interfaceTheme", "dark");
+    addDarkTheme();
+  }
+}
+function removeDarkTheme() {
+  document.body.classList.remove("dark");
+  refs.output.classList.remove("dark");
+  refs.requests.classList.remove("dark");
+}
+function addDarkTheme() {
+  document.body.classList.add("dark");
+  refs.output.classList.add("dark");
+  refs.requests.classList.add("dark");
+}
 
 function changeLoadMethod(e) {
   if (e.currentTarget.dataset.loadMoreImg === "click") {
