@@ -2494,9 +2494,18 @@ function changeLoadMethod(e) {
   if (e.currentTarget.dataset.loadMoreImg === "click") {
     e.currentTarget.dataset.loadMoreImg = "scroll";
     e.currentTarget.children[0].textContent = 'I love "Load more" button!';
+
+    if (refs.gallery.children.length > 0) {
+      removeLoadMoreBtn();
+      getLoadMoreMethod();
+    }
   } else {
     e.currentTarget.dataset.loadMoreImg = "click";
     e.currentTarget.children[0].textContent = 'I hate "Load more" button!';
+
+    if (refs.gallery.children.length > 0) {
+      getLoadMoreMethod();
+    }
   }
 }
 
@@ -2549,16 +2558,20 @@ function showFoundPictures(pictures) {
   pageNumber += 1;
 }
 
-function getLoadMoreMethod(pictures) {
+function getLoadMoreMethod() {
   if (refs.optionLoad.dataset.loadMoreImg === "click") {
     showLoadMoreBtn();
   } else {
     var target = refs.gallery.children[refs.gallery.children.length - 1];
-    console.log(target);
-    var observer = new IntersectionObserver(getSearchPicture, {
-      root: null,
-      rootMargin: "0px 0px 30px 0px",
-      threshold: 0.55
+    var observer = new IntersectionObserver(function (entry, observer) {
+      if (entry[0].isIntersecting) {
+        observer.unobserve(target);
+        getSearchPicture();
+      }
+    }, {
+      root: null // rootMargin: "30px 0px 0px 0px",
+      // threshold: 0.55,
+
     });
     observer.observe(target);
   }
@@ -2588,7 +2601,6 @@ function showRequest() {
 
 function scrollToNewPictures(arr) {
   var firstInNewPictures = document.getElementById("".concat(String(arr[0].id)));
-  console.log(arr[0]);
 
   if (refs.optionLoad.dataset.loadMoreImg === "scroll") {
     return;
@@ -2670,7 +2682,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "50994" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "55060" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
