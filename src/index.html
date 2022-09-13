@@ -14,9 +14,13 @@
   <body>
     <div class="wrapper">
       <header>
-        <div class="option-load" data-load-more-img="click">
+        <label class="option-load" data-load-more-img="click">
+          <input type="checkbox" class="option-load__checkbox checkbox" />
+          <span class="option-load__text">I hate "Load more" button!</span>
+        </label>
+        <!-- <div class="option-load" data-load-more-img="click">
           <button>I hate "Load more" button!</button>
-        </div>
+        </div> -->
         <div class="search-container">
           <form action="" class="search-form" onsubmit="return false">
             <input
@@ -31,11 +35,15 @@
             </button>
           </form>
         </div>
-        <div class="theme">
-          <button class="theme-btn" data-theme="light">
-            <span class="material-icons">bedtime</span>
-          </button>
-        </div>
+        <label class="theme">
+          <!-- <input type="checkbox" class="theme__input" data-theme="light" /> -->
+          <input
+            type="checkbox"
+            class="theme__checkbox checkbox"
+            data-theme="light"
+          />
+          <span class="material-icons theme__span">bedtime</span>
+        </label>
       </header>
       <div class="content">
         <ul class="requests"></ul>

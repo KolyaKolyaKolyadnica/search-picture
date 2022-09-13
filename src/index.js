@@ -11,3 +11,7 @@ refs.optionLoad.addEventListener("click", changeLoadMethod);
 refs.themeBtn.addEventListener("click", changeInterfaceTheme);
 
 startInterfaceTheme();
+
+// console.log(refs.optionLoad);
+
+// console.log(refs.optionLoad);

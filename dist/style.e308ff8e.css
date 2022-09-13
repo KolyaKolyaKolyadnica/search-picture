@@ -3,7 +3,15 @@
   padding: 0;
 }
 li {
+  transition: all 500ms;
   list-style-type: none;
+}
+img {
+  cursor: pointer;
+  transition: all 500ms;
+}
+img:hover {
+  transform: scale(1.01);
 }
 body {
   overflow-x: hidden;
@@ -53,13 +61,31 @@ button {
   text-align: center;
   text-decoration: none;
   display: inline-block;
+  cursor: pointer;
 }
 
 .option-load {
   width: 10%;
   min-width: 100px;
+
+  border: 1px solid #000;
 }
-.option-load > button {
+.option-load__text {
+  display: block;
+  border: 1px solid #000;
+  border-radius: 5px;
+}
+.checkbox {
+  -webkit-appearance: none;
+  appearance: none;
+  position: absolute;
+  width: 0px;
+  height: 0px;
+}
+.checkbox:focus + .option-load__text {
+  border: 5px solid #47536f;
+}
+/* .option-load > button {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -67,23 +93,25 @@ button {
   height: 40px;
   border-radius: 5px;
   outline: 1px solid #000;
-}
+} */
+
 .theme {
-  width: 10%;
-}
-.theme > button {
-  background-color: #ffffff00;
-  color: rgb(0, 0, 0);
-  border: none;
-  text-align: center;
-  text-decoration: none;
-  display: inline-block;
-}
-.theme > button > span {
   display: flex;
   justify-content: center;
   align-items: center;
-  transform: scale(1.2);
+
+  cursor: pointer;
+  border: 1px solid rgb(255, 0, 0);
+}
+
+.theme__span {
+}
+.theme > span {
+  font-size: 34px;
+}
+.checkbox:focus + .theme__span {
+  border: 2px solid #47536f;
+  border-radius: 50%;
 }
 
 .search-container {
@@ -122,14 +150,6 @@ button {
   transform: scale(1.5);
 }
 
-.theme {
-  min-width: 40px;
-  padding: 0 10px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
 .content {
   display: flex;
   align-items: center;
@@ -139,20 +159,29 @@ button {
 }
 
 .requests {
-  height: 35px;
+  width: 90vw;
   display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
   margin: 20px 0;
 }
 .requests > li {
-  margin: 0 5px;
+  margin: 5px;
   padding: 3px 5px;
   font-size: 22px;
   border-radius: 5px;
   border: 1px solid #000;
+  cursor: pointer;
 }
 .requests.dark > li {
   background-color: rgb(30, 30, 30);
-  border: 1px solid rgb(212, 212, 212);
+  border: 1px solid #65779f;
+}
+.requests > li:hover {
+  box-shadow: 1px 1px 8px #47536f;
+}
+.requests.dark > li:hover {
+  box-shadow: 1px 1px 8px #65779f;
 }
 
 .load-more-btn {
@@ -192,6 +221,7 @@ button {
   margin-bottom: 40px;
   box-shadow: 1px 1px 8px #47536f;
   transition: all 500ms;
+  padding: 20px 20px 0px 20px;
 }
 .gallery-item:hover {
   box-shadow: 1px 1px 18px #47536f;
@@ -199,21 +229,29 @@ button {
 .picture-container {
   width: 350px;
   height: 250px;
-  margin: 20px 20px 0px 20px;
+  /* padding: 20px 20px 0px 20px; */
+  /* margin: 20px 20px 0px 20px; */
   overflow: hidden;
   display: flex;
   align-items: center;
   justify-content: center;
+
+  /* border: 1px solid rgb(255, 0, 0); */
 }
 
 .picture-container > img {
-  width: auto;
+  object-fit: contain;
+  display: block;
+  width: 100%;
+  height: auto;
+
+  /* width: auto;
   min-width: 100%;
-  min-height: 100%;
+  min-height: 100%; */
 }
 .picture-info {
   display: flex;
-  justify-content: space-evenly;
+  justify-content: space-between;
   align-items: center;
   height: 50px;
   width: 100%;

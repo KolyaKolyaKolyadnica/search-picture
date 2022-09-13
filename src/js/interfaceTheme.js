@@ -1,20 +1,39 @@
 import refs from "./refs";
+import pnotify from "./pnotify.js";
+
+// Simulation of closed access to local storage:
+// const localStorage = null;
 
 export function startInterfaceTheme() {
-  if (!localStorage.interfaceTheme || localStorage.interfaceTheme === "light") {
-    removeDarkTheme();
-  } else {
-    addDarkTheme();
+  try {
+    if (
+      !localStorage.interfaceTheme ||
+      localStorage.interfaceTheme === "light"
+    ) {
+      removeDarkTheme();
+    } else {
+      addDarkTheme();
+    }
+  } catch {
+    pnotify("WARNING! Problems with access to local storage");
   }
 }
 
 export function changeInterfaceTheme() {
-  if (localStorage.interfaceTheme === "dark") {
-    localStorage.setItem("interfaceTheme", "light");
-    removeDarkTheme();
-  } else {
-    localStorage.setItem("interfaceTheme", "dark");
-    addDarkTheme();
+  try {
+    if (localStorage.interfaceTheme === "dark") {
+      localStorage.setItem("interfaceTheme", "light");
+      removeDarkTheme();
+      switchIcon();
+    } else {
+      localStorage.setItem("interfaceTheme", "dark");
+      addDarkTheme();
+    }
+  } catch {
+    document.body.classList.toggle("dark");
+    refs.output.classList.toggle("dark");
+    refs.requests.classList.toggle("dark");
+    switchIcon();
   }
 }
 function removeDarkTheme() {
@@ -26,4 +45,22 @@ function addDarkTheme() {
   document.body.classList.add("dark");
   refs.output.classList.add("dark");
   refs.requests.classList.add("dark");
+
+  switchIcon();
+}
+function switchIcon() {
+  console.log(refs.themeBtn.textContent);
+  console.dir(refs.themeBtn);
+
+  // refs.themeBtn.innerHTML === "bedtime"
+  //   ? (refs.themeBtn.innerHTML = "wb sunny")
+  //   : (refs.themeBtn.innerHTML = "bedtime");
+
+  // refs.themeBtn.innerText === "bedtime"
+  //   ? (refs.themeBtn.innerText = "wb sunny")
+  //   : (refs.themeBtn.innerText = "bedtime");
+
+  refs.themeIcon.textContent === "bedtime"
+    ? (refs.themeIcon.textContent = "wb sunny")
+    : (refs.themeIcon.textContent = "bedtime");
 }

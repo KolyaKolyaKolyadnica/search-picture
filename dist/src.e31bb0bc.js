@@ -130,7 +130,8 @@ var refs = {
   searchForm: document.querySelector(".search-form"),
   searchInput: document.querySelector(".search-input"),
   searchBtn: document.querySelector(".search-btn"),
-  themeBtn: document.querySelector(".theme-btn"),
+  themeBtn: document.querySelector(".theme__checkbox"),
+  themeIcon: document.querySelector(".theme__span"),
   output: document.querySelector(".content"),
   requests: document.querySelector(".requests"),
   gallery: document.querySelector(".gallery"),
@@ -138,77 +139,7 @@ var refs = {
 };
 var _default = refs;
 exports.default = _default;
-},{}],"js/interfaceTheme.js":[function(require,module,exports) {
-"use strict";
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.changeInterfaceTheme = changeInterfaceTheme;
-exports.startInterfaceTheme = startInterfaceTheme;
-
-var _refs = _interopRequireDefault(require("./refs"));
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function startInterfaceTheme() {
-  if (!localStorage.interfaceTheme || localStorage.interfaceTheme === "light") {
-    removeDarkTheme();
-  } else {
-    addDarkTheme();
-  }
-}
-
-function changeInterfaceTheme() {
-  if (localStorage.interfaceTheme === "dark") {
-    localStorage.setItem("interfaceTheme", "light");
-    removeDarkTheme();
-  } else {
-    localStorage.setItem("interfaceTheme", "dark");
-    addDarkTheme();
-  }
-}
-
-function removeDarkTheme() {
-  document.body.classList.remove("dark");
-
-  _refs.default.output.classList.remove("dark");
-
-  _refs.default.requests.classList.remove("dark");
-}
-
-function addDarkTheme() {
-  document.body.classList.add("dark");
-
-  _refs.default.output.classList.add("dark");
-
-  _refs.default.requests.classList.add("dark");
-}
-},{"./refs":"js/refs.js"}],"js/request.js":[function(require,module,exports) {
-"use strict";
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.addRequest = addRequest;
-exports.requests = void 0;
-exports.showRequest = showRequest;
-
-var _refs = _interopRequireDefault(require("./refs"));
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-var requests = [];
-exports.requests = requests;
-
-function addRequest() {
-  requests.push(_refs.default.searchInput.value);
-}
-
-function showRequest() {
-  _refs.default.requests.insertAdjacentHTML("beforeend", "<li>".concat(requests[requests.length - 1], "</li>"));
-}
-},{"./refs":"js/refs.js"}],"../node_modules/parcel-bundler/src/builtins/bundle-url.js":[function(require,module,exports) {
+},{}],"../node_modules/parcel-bundler/src/builtins/bundle-url.js":[function(require,module,exports) {
 var bundleURL = null;
 
 function getBundleURLCached() {
@@ -350,7 +281,114 @@ var pnotify = function pnotify(text) {
 
 var _default = pnotify;
 exports.default = _default;
-},{"@pnotify/core/dist/PNotify.css":"../node_modules/@pnotify/core/dist/PNotify.css","@pnotify/core/dist/BrightTheme.css":"../node_modules/@pnotify/core/dist/BrightTheme.css","@pnotify/core":"../node_modules/@pnotify/core/dist/PNotify.js"}],"../node_modules/handlebars/dist/handlebars.runtime.js":[function(require,module,exports) {
+},{"@pnotify/core/dist/PNotify.css":"../node_modules/@pnotify/core/dist/PNotify.css","@pnotify/core/dist/BrightTheme.css":"../node_modules/@pnotify/core/dist/BrightTheme.css","@pnotify/core":"../node_modules/@pnotify/core/dist/PNotify.js"}],"js/interfaceTheme.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.changeInterfaceTheme = changeInterfaceTheme;
+exports.startInterfaceTheme = startInterfaceTheme;
+
+var _refs = _interopRequireDefault(require("./refs"));
+
+var _pnotify = _interopRequireDefault(require("./pnotify.js"));
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+// Simulation of closed access to local storage:
+// const localStorage = null;
+function startInterfaceTheme() {
+  try {
+    if (!localStorage.interfaceTheme || localStorage.interfaceTheme === "light") {
+      removeDarkTheme();
+    } else {
+      addDarkTheme();
+    }
+  } catch (_unused) {
+    (0, _pnotify.default)("WARNING! Problems with access to local storage");
+  }
+}
+
+function changeInterfaceTheme() {
+  try {
+    if (localStorage.interfaceTheme === "dark") {
+      localStorage.setItem("interfaceTheme", "light");
+      removeDarkTheme();
+      switchIcon();
+    } else {
+      localStorage.setItem("interfaceTheme", "dark");
+      addDarkTheme();
+    }
+  } catch (_unused2) {
+    document.body.classList.toggle("dark");
+
+    _refs.default.output.classList.toggle("dark");
+
+    _refs.default.requests.classList.toggle("dark");
+
+    switchIcon();
+  }
+}
+
+function removeDarkTheme() {
+  document.body.classList.remove("dark");
+
+  _refs.default.output.classList.remove("dark");
+
+  _refs.default.requests.classList.remove("dark");
+}
+
+function addDarkTheme() {
+  document.body.classList.add("dark");
+
+  _refs.default.output.classList.add("dark");
+
+  _refs.default.requests.classList.add("dark");
+
+  switchIcon();
+}
+
+function switchIcon() {
+  console.log(_refs.default.themeBtn.textContent);
+  console.dir(_refs.default.themeBtn); // refs.themeBtn.innerHTML === "bedtime"
+  //   ? (refs.themeBtn.innerHTML = "wb sunny")
+  //   : (refs.themeBtn.innerHTML = "bedtime");
+  // refs.themeBtn.innerText === "bedtime"
+  //   ? (refs.themeBtn.innerText = "wb sunny")
+  //   : (refs.themeBtn.innerText = "bedtime");
+
+  _refs.default.themeIcon.textContent === "bedtime" ? _refs.default.themeIcon.textContent = "wb sunny" : _refs.default.themeIcon.textContent = "bedtime";
+}
+},{"./refs":"js/refs.js","./pnotify.js":"js/pnotify.js"}],"js/request.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.addRequest = addRequest;
+exports.requests = void 0;
+exports.showRequest = showRequest;
+
+var _refs = _interopRequireDefault(require("./refs"));
+
+var _startSearching = require("./startSearching");
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var requests = [];
+exports.requests = requests;
+
+function addRequest() {
+  requests.push(_refs.default.searchInput.value);
+}
+
+function showRequest() {
+  _refs.default.requests.insertAdjacentHTML("beforeend", "<li>".concat(requests[requests.length - 1], "</li>"));
+
+  _refs.default.requests.children[_refs.default.requests.children.length - 1].addEventListener("click", _startSearching.startSearching);
+}
+},{"./refs":"js/refs.js","./startSearching":"js/startSearching.js"}],"../node_modules/handlebars/dist/handlebars.runtime.js":[function(require,module,exports) {
 var define;
 var global = arguments[3];
 /**!
@@ -2664,9 +2702,22 @@ var _startSearching = require("./startSearching");
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function changeLoadMethod(e) {
+  console.log("e", e); // if (e.target.textContent === "") {
+  //   return;
+  // }
+
+  console.log("e.target ", e.target);
+  console.dir(e.target); // return;
+  // console.log(".children ", e.currentTarget.children[1]);
+  // console.log(
+  //   "children[0].textContent ",
+  //   e.currentTarget.children[0].textContent
+  // );
+  // console.log(e.currentTarget.dataset.loadMoreImg === "click");
+
   if (e.currentTarget.dataset.loadMoreImg === "click") {
     e.currentTarget.dataset.loadMoreImg = "scroll";
-    e.currentTarget.children[0].textContent = 'I love "Load more" button!';
+    e.currentTarget.children[1].textContent = 'I love "Load more" button!';
 
     if (_refs.default.gallery.children.length > 0) {
       removeLoadMoreBtn();
@@ -2674,12 +2725,14 @@ function changeLoadMethod(e) {
     }
   } else {
     e.currentTarget.dataset.loadMoreImg = "click";
-    e.currentTarget.children[0].textContent = 'I hate "Load more" button!';
+    e.currentTarget.children[1].textContent = 'I hate "Load more" button!';
 
     if (_refs.default.gallery.children.length > 0) {
       getLoadMoreMethod();
     }
-  }
+  } // refs.optionLoad.removeEventListener("click", changeLoadMethod);
+  // refs.optionLoad.addEventListener("click", changeLoadMethod);
+
 }
 
 function getLoadMoreMethod() {
@@ -2702,9 +2755,12 @@ function getLoadMoreMethod() {
 }
 
 function showLoadMoreBtn() {
-  _refs.default.loadMoreBtn.classList.add("active");
+  _refs.default.loadMoreBtn.classList.add("active"); // refs.output
+  //   .querySelector(".load-more-btn")
+  //   .addEventListener("click", getSearchPicture);
 
-  _refs.default.output.querySelector(".load-more-btn").addEventListener("click", _startSearching.getSearchPicture);
+
+  _refs.default.loadMoreBtn.addEventListener("click", _startSearching.getSearchPicture);
 }
 
 function removeLoadMoreBtn() {
@@ -2739,36 +2795,53 @@ var PER_PAGE = 12;
 var pageNumber;
 
 function startSearching(e) {
-  if (_refs.default.searchInput.value === "") {
+  if (_refs.default.searchInput.value === "" && e.target.localName !== "li") {
     return;
   }
 
   pageNumber = 1;
   (0, _loadMore.removeLoadMoreBtn)();
-  (0, _request.addRequest)();
-  getSearchPicture();
+
+  if (e.target.localName !== "li") {
+    (0, _request.addRequest)();
+  }
+
+  getSearchPicture(e.target);
   _refs.default.searchInput.value = "";
 }
 
-function getSearchPicture() {
-  var lastRequest = _request.requests[_request.requests.length - 1];
+function getSearchPicture(el) {
+  var lastRequest;
+
+  if (!el || el.localName !== "li") {
+    lastRequest = _request.requests[_request.requests.length - 1];
+  } else {
+    lastRequest = el.textContent;
+  }
+
+  console.log("afterIF");
   fetch("".concat(BASE_URL, "?key=").concat(API_KEY, "&q=").concat(lastRequest, "&image_type=photo&orientation=horizontal&page=").concat(pageNumber, "&per_page=").concat(PER_PAGE, "&lang=en,ru")).then(function (r) {
     return r.json();
-  }).then(showFoundPictures).catch(showError);
+  }).then(function (r) {
+    showFoundPictures(r, el);
+  }).catch(showError);
 }
 
 function showError(error) {
   (0, _pnotify.default)("ERROR! ".concat(error));
 }
 
-function showFoundPictures(pictures) {
+function showFoundPictures(pictures, el) {
   if (pictures.total === 0) {
     (0, _pnotify.default)("Sorry sweetie. Can't find this request. Try typing something else...");
     return;
   }
 
   if (pictures.hits.length > 0 && pageNumber === 1) {
-    (0, _request.showRequest)();
+    if (el.localName !== "li") {
+      (0, _request.showRequest)();
+    }
+
     _refs.default.gallery.innerHTML = "";
   }
 
@@ -2809,7 +2882,8 @@ _refs.default.optionLoad.addEventListener("click", _loadMore.changeLoadMethod);
 
 _refs.default.themeBtn.addEventListener("click", _interfaceTheme.changeInterfaceTheme);
 
-(0, _interfaceTheme.startInterfaceTheme)();
+(0, _interfaceTheme.startInterfaceTheme)(); // console.log(refs.optionLoad);
+// console.log(refs.optionLoad);
 },{"./js/interfaceTheme.js":"js/interfaceTheme.js","./js/refs":"js/refs.js","./js/startSearching":"js/startSearching.js","./js/loadMore":"js/loadMore.js"}],"../node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
@@ -2838,7 +2912,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "51274" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "50151" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

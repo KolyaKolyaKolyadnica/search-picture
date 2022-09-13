@@ -12,31 +12,41 @@ const PER_PAGE = 12;
 let pageNumber;
 
 export function startSearching(e) {
-  if (refs.searchInput.value === "") {
+  if (refs.searchInput.value === "" && e.target.localName !== "li") {
     return;
   }
   pageNumber = 1;
 
   removeLoadMoreBtn();
-  addRequest();
-  getSearchPicture();
+
+  if (e.target.localName !== "li") {
+    addRequest();
+  }
+  getSearchPicture(e.target);
 
   refs.searchInput.value = "";
 }
-export function getSearchPicture() {
-  const lastRequest = requests[requests.length - 1];
-
+export function getSearchPicture(el) {
+  let lastRequest;
+  if (!el || el.localName !== "li") {
+    lastRequest = requests[requests.length - 1];
+  } else {
+    lastRequest = el.textContent;
+  }
+  console.log("afterIF");
   fetch(
     `${BASE_URL}?key=${API_KEY}&q=${lastRequest}&image_type=photo&orientation=horizontal&page=${pageNumber}&per_page=${PER_PAGE}&lang=en,ru`
   )
     .then((r) => r.json())
-    .then(showFoundPictures)
+    .then((r) => {
+      showFoundPictures(r, el);
+    })
     .catch(showError);
 }
 function showError(error) {
   pnotify(`ERROR! ${error}`);
 }
-function showFoundPictures(pictures) {
+function showFoundPictures(pictures, el) {
   if (pictures.total === 0) {
     pnotify(
       "Sorry sweetie. Can't find this request. Try typing something else..."
@@ -46,7 +56,9 @@ function showFoundPictures(pictures) {
   }
 
   if (pictures.hits.length > 0 && pageNumber === 1) {
-    showRequest();
+    if (el.localName !== "li") {
+      showRequest();
+    }
     refs.gallery.innerHTML = "";
   }
 
