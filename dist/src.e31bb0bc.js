@@ -2702,18 +2702,9 @@ var _startSearching = require("./startSearching");
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function changeLoadMethod(e) {
-  console.log("e", e); // if (e.target.textContent === "") {
-  //   return;
-  // }
-
-  console.log("e.target ", e.target);
-  console.dir(e.target); // return;
-  // console.log(".children ", e.currentTarget.children[1]);
-  // console.log(
-  //   "children[0].textContent ",
-  //   e.currentTarget.children[0].textContent
-  // );
-  // console.log(e.currentTarget.dataset.loadMoreImg === "click");
+  if (e.target.localName !== "input") {
+    return;
+  }
 
   if (e.currentTarget.dataset.loadMoreImg === "click") {
     e.currentTarget.dataset.loadMoreImg = "scroll";
@@ -2912,7 +2903,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "50151" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "49962" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

@@ -2,20 +2,9 @@ import refs from "./refs";
 import { getSearchPicture } from "./startSearching";
 
 export function changeLoadMethod(e) {
-  console.log("e", e);
-  // if (e.target.textContent === "") {
-  //   return;
-  // }
-
-  console.log("e.target ", e.target);
-  console.dir(e.target);
-  // return;
-  // console.log(".children ", e.currentTarget.children[1]);
-  // console.log(
-  //   "children[0].textContent ",
-  //   e.currentTarget.children[0].textContent
-  // );
-  // console.log(e.currentTarget.dataset.loadMoreImg === "click");
+  if (e.target.localName !== "input") {
+    return;
+  }
 
   if (e.currentTarget.dataset.loadMoreImg === "click") {
     e.currentTarget.dataset.loadMoreImg = "scroll";
