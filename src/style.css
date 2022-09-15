@@ -36,7 +36,7 @@ body {
 }
 
 /* HEADER */
-.head {
+.header {
   border-bottom: 1px solid #000;
   box-shadow: 1px 1px 8px #47536f;
   transition: all 500ms;
@@ -49,13 +49,13 @@ body {
 
   z-index: 5;
 }
-.head:hover {
+.header:hover {
   box-shadow: 1px 1px 18px #47536f;
 }
-.head.dark {
+.header.dark {
   background-color: rgb(20, 20, 20);
 }
-.head__content {
+.header__content {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -79,9 +79,6 @@ button {
 .option-load {
   position: absolute;
   left: 30px;
-
-  width: 10%;
-  min-width: 100px;
 
   border-radius: 5px;
 
@@ -234,37 +231,23 @@ button {
 
 /* Up button */
 .up-btn {
-  display: none;
+  display: none !important;
   position: fixed;
+
   right: 30px;
   bottom: 30px;
+  text-decoration: none;
+  font-size: 50px !important;
+  color: #47536f !important;
 
-  width: 50px;
-  height: 50px;
-  border-radius: 50%;
-  background-color: #47536f;
   transition: all 1s;
 }
 .up-btn:hover {
-  box-shadow: 1px 1px 18px #47536f;
-}
-.up-btn > a {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  font-size: 30px;
-
-  width: 100%;
-  height: 100%;
-
-  color: rgb(255, 255, 255);
-  text-decoration: none;
-
-  text-align: center;
+  transform: scale(1.5);
 }
 
 .active {
-  display: block;
+  display: block !important;
 }
 
 /* Handlebars */

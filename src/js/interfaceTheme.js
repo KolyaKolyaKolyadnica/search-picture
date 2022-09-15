@@ -49,17 +49,6 @@ function addDarkTheme() {
   switchIcon();
 }
 function switchIcon() {
-  console.log(refs.themeBtn.textContent);
-  console.dir(refs.themeBtn);
-
-  // refs.themeBtn.innerHTML === "bedtime"
-  //   ? (refs.themeBtn.innerHTML = "wb sunny")
-  //   : (refs.themeBtn.innerHTML = "bedtime");
-
-  // refs.themeBtn.innerText === "bedtime"
-  //   ? (refs.themeBtn.innerText = "wb sunny")
-  //   : (refs.themeBtn.innerText = "bedtime");
-
   refs.themeIcon.textContent === "bedtime"
     ? (refs.themeIcon.textContent = "wb sunny")
     : (refs.themeIcon.textContent = "bedtime");

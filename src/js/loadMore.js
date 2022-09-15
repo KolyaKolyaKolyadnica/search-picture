@@ -1,14 +1,30 @@
 import refs from "./refs";
+import pnotify from "./pnotify.js";
 import { getSearchPicture } from "./startSearching";
+
+export function startLoadMethod() {
+  try {
+    if (!localStorage.loadMethod || localStorage.loadMethod === "click") {
+      refs.optionLoad.dataset.loadMoreImg = "scroll";
+      refs.optionLoad.children[1].textContent = 'I love "Load more" button!';
+    } else {
+      refs.optionLoad.dataset.loadMoreImg = "click";
+      refs.optionLoad.children[1].textContent = 'I hate "Load more" button!';
+    }
+  } catch {
+    pnotify("WARNING! Problems with access to local storage");
+  }
+}
 
 export function changeLoadMethod(e) {
   if (e.target.localName !== "input") {
     return;
   }
-
+  console.log(e.currentTarget);
   if (e.currentTarget.dataset.loadMoreImg === "click") {
     e.currentTarget.dataset.loadMoreImg = "scroll";
     e.currentTarget.children[1].textContent = 'I love "Load more" button!';
+    localStorage.setItem("loadMoreImg", "scroll");
 
     if (refs.gallery.children.length > 0) {
       removeLoadMoreBtn();
@@ -17,14 +33,12 @@ export function changeLoadMethod(e) {
   } else {
     e.currentTarget.dataset.loadMoreImg = "click";
     e.currentTarget.children[1].textContent = 'I hate "Load more" button!';
+    localStorage.setItem("loadMoreImg", "click");
 
     if (refs.gallery.children.length > 0) {
       getLoadMoreMethod();
     }
   }
-
-  // refs.optionLoad.removeEventListener("click", changeLoadMethod);
-  // refs.optionLoad.addEventListener("click", changeLoadMethod);
 }
 export function getLoadMoreMethod() {
   if (refs.optionLoad.dataset.loadMoreImg === "click") {
@@ -53,11 +67,6 @@ export function getLoadMoreMethod() {
 
 export function showLoadMoreBtn() {
   refs.loadMoreBtn.classList.add("active");
-
-  // refs.output
-  //   .querySelector(".load-more-btn")
-  //   .addEventListener("click", getSearchPicture);
-
   refs.loadMoreBtn.addEventListener("click", getSearchPicture);
 }
 export function removeLoadMoreBtn() {

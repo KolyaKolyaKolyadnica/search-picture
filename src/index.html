@@ -17,10 +17,10 @@
   </head>
   <body>
     <div class="wrapper">
-      <header class="head" id="head">
-        <div class="head__content">
+      <header class="header" id="header">
+        <div class="header__content">
           <label class="option-load" data-load-more-img="click">
-            <input type="checkbox" class="option-load__checkbox checkbox" />
+            <input class="option-load__checkbox checkbox" type="checkbox" />
             <span class="option-load__text">I hate "Load more" button!</span>
           </label>
           <div class="search-container">
@@ -37,7 +37,7 @@
               </button>
             </form>
           </div>
-          <label class="theme">
+          <label class="theme" type="checkbox">
             <input
               type="checkbox"
               class="theme__checkbox checkbox"
@@ -55,9 +55,12 @@
         </div>
       </div>
 
-      <button class="up-btn">
-        <a href="#head" class="material-symbols-outlined">arrow_upward</a>
-      </button>
+      <a
+        href="#header"
+        class="up-btn material-symbols-outlined"
+        style="display: none"
+        >arrow_upward</a
+      >
     </div>
     <script src="./index.js" type="module"></script>
   </body>

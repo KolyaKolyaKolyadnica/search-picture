@@ -33,7 +33,7 @@ export function getSearchPicture(el) {
   } else {
     lastRequest = el.textContent;
   }
-  console.log("afterIF");
+
   fetch(
     `${BASE_URL}?key=${API_KEY}&q=${lastRequest}&image_type=photo&orientation=horizontal&page=${pageNumber}&per_page=${PER_PAGE}&lang=en,ru`
   )
