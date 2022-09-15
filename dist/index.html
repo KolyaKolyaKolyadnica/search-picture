@@ -6,31 +6,30 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/style.e308ff8e.css">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200">
     <title>hw-13</title>
   <script src="/style.e308ff8e.js"></script><link rel="stylesheet" href="/src.e31bb0bc.css"></head>
   <body>
     <div class="wrapper">
-      <header>
-        <label class="option-load" data-load-more-img="click">
-          <input type="checkbox" class="option-load__checkbox checkbox">
-          <span class="option-load__text">I hate "Load more" button!</span>
-        </label>
-        <!-- <div class="option-load" data-load-more-img="click">
-          <button>I hate "Load more" button!</button>
-        </div> -->
-        <div class="search-container">
-          <form action="" class="search-form" onsubmit="return false">
-            <input type="text" class="search-input" name="query" autocomplete="off" placeholder="Search images...">
-            <button class="search-btn">
-              <span class="material-icons">search</span>
-            </button>
-          </form>
+      <header class="head" id="head">
+        <div class="head__content">
+          <label class="option-load" data-load-more-img="click">
+            <input type="checkbox" class="option-load__checkbox checkbox">
+            <span class="option-load__text">I hate "Load more" button!</span>
+          </label>
+          <div class="search-container">
+            <form action="" class="search-form" onsubmit="return false">
+              <input type="text" class="search-input" name="query" autocomplete="off" placeholder="Search images...">
+              <button class="search-btn">
+                <span class="material-icons">search</span>
+              </button>
+            </form>
+          </div>
+          <label class="theme">
+            <input type="checkbox" class="theme__checkbox checkbox" data-theme="light">
+            <span class="material-icons theme__span">bedtime</span>
+          </label>
         </div>
-        <label class="theme">
-          <!-- <input type="checkbox" class="theme__input" data-theme="light" /> -->
-          <input type="checkbox" class="theme__checkbox checkbox" data-theme="light">
-          <span class="material-icons theme__span">bedtime</span>
-        </label>
       </header>
       <div class="content">
         <ul class="requests"></ul>
@@ -39,8 +38,11 @@
           <button>Load more</button>
         </div>
       </div>
-    </div>
 
+      <button class="up-btn">
+        <a href="#head" class="material-symbols-outlined">arrow_upward</a>
+      </button>
+    </div>
     <script src="/src.e31bb0bc.js" type="module"></script>
   </body>
 </html>

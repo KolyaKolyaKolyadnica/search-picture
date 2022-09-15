@@ -135,7 +135,8 @@ var refs = {
   output: document.querySelector(".content"),
   requests: document.querySelector(".requests"),
   gallery: document.querySelector(".gallery"),
-  loadMoreBtn: document.querySelector(".load-more-btn")
+  loadMoreBtn: document.querySelector(".load-more-btn"),
+  goUpBtn: document.querySelector(".up-btn")
 };
 var _default = refs;
 exports.default = _default;
@@ -2854,7 +2855,26 @@ function showFoundPictures(pictures, el) {
 
   pageNumber += 1;
 }
-},{"./refs":"js/refs.js","./request":"js/request.js","./pnotify.js":"js/pnotify.js","./addNewPictures":"js/addNewPictures.js","./clickOnImg":"js/clickOnImg.js","./loadMore":"js/loadMore.js"}],"index.js":[function(require,module,exports) {
+},{"./refs":"js/refs.js","./request":"js/request.js","./pnotify.js":"js/pnotify.js","./addNewPictures":"js/addNewPictures.js","./clickOnImg":"js/clickOnImg.js","./loadMore":"js/loadMore.js"}],"js/goUpBtn.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.getGoUpBtn = getGoUpBtn;
+
+var _refs = _interopRequireDefault(require("./refs"));
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function getGoUpBtn(e) {
+  if (window.pageYOffset > 200) {
+    _refs.default.goUpBtn.classList.add("active");
+  } else {
+    _refs.default.goUpBtn.classList.remove("active");
+  }
+}
+},{"./refs":"js/refs.js"}],"index.js":[function(require,module,exports) {
 "use strict";
 
 var _interfaceTheme = require("./js/interfaceTheme.js");
@@ -2865,6 +2885,8 @@ var _startSearching = require("./js/startSearching");
 
 var _loadMore = require("./js/loadMore");
 
+var _goUpBtn = require("./js/goUpBtn");
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 _refs.default.searchForm.addEventListener("submit", _startSearching.startSearching);
@@ -2873,9 +2895,9 @@ _refs.default.optionLoad.addEventListener("click", _loadMore.changeLoadMethod);
 
 _refs.default.themeBtn.addEventListener("click", _interfaceTheme.changeInterfaceTheme);
 
-(0, _interfaceTheme.startInterfaceTheme)(); // console.log(refs.optionLoad);
-// console.log(refs.optionLoad);
-},{"./js/interfaceTheme.js":"js/interfaceTheme.js","./js/refs":"js/refs.js","./js/startSearching":"js/startSearching.js","./js/loadMore":"js/loadMore.js"}],"../node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
+(0, _interfaceTheme.startInterfaceTheme)();
+document.addEventListener("scroll", _goUpBtn.getGoUpBtn);
+},{"./js/interfaceTheme.js":"js/interfaceTheme.js","./js/refs":"js/refs.js","./js/startSearching":"js/startSearching.js","./js/loadMore":"js/loadMore.js","./js/goUpBtn":"js/goUpBtn.js"}],"../node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
 var OldModule = module.bundle.Module;
@@ -2903,7 +2925,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "49962" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "49921" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

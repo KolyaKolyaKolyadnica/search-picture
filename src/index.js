@@ -5,6 +5,7 @@ import {
 import refs from "./js/refs";
 import { startSearching } from "./js/startSearching";
 import { changeLoadMethod } from "./js/loadMore";
+import { getGoUpBtn } from "./js/goUpBtn";
 
 refs.searchForm.addEventListener("submit", startSearching);
 refs.optionLoad.addEventListener("click", changeLoadMethod);
@@ -12,6 +13,4 @@ refs.themeBtn.addEventListener("click", changeInterfaceTheme);
 
 startInterfaceTheme();
 
-// console.log(refs.optionLoad);
-
-// console.log(refs.optionLoad);
+document.addEventListener("scroll", getGoUpBtn);

@@ -14,6 +14,8 @@ const refs = {
   requests: document.querySelector(".requests"),
   gallery: document.querySelector(".gallery"),
   loadMoreBtn: document.querySelector(".load-more-btn"),
+
+  goUpBtn: document.querySelector(".up-btn"),
 };
 
 export default refs;
