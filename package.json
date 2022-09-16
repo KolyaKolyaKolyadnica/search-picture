@@ -4,19 +4,21 @@
   "description": "",
   "scripts": {
     "start": "parcel src/index.html",
-    "build": "parcel build src/index.html"
+    "build": "parcel build src/index.html",
+    "deploy": "gh-pages -d dist",
+    "predeploy": "npm run build"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/KolyaKolyaKolyadnica/hw-13.git"
+    "url": "git+https://github.com/KolyaKolyaKolyadnica/search-picture.git"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/KolyaKolyaKolyadnica/hw-13/issues"
+    "url": "https://github.com/KolyaKolyaKolyadnica/search-picture/issues"
   },
-  "homepage": "https://github.com/KolyaKolyaKolyadnica/hw-13#readme",
+  "homepage": "https://KolyaKolyaKolyadnica.github.io/search-picture",
   "devDependencies": {
     "@pnotify/core": "^5.2.0",
     "parcel": "^2.7.0",
@@ -25,7 +27,9 @@
   },
   "dependencies": {
     "basiclightbox": "^5.0.4",
+    "gh-pages": "^4.0.0",
     "handlebars": "^4.7.7",
-    "lodash.throttle": "^4.1.1"
+    "lodash.throttle": "^4.1.1",
+    "parcel-plugin-nuke-dist": "^1.0.1"
   }
 }
