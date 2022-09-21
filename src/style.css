@@ -319,7 +319,7 @@ button {
   transform: translate(-50%, -50%);
 }
 .basicLightbox__placeholder > img {
-  height: 80vh;
+  width: 90vw;
 }
 
 @media (max-width: 1100px) {
