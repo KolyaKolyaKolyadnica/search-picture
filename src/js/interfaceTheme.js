@@ -56,8 +56,4 @@ function switchIcon() {
   refs.themeBtn.checked
     ? (refs.themeIcon.textContent = "wb_sunny")
     : (refs.themeIcon.textContent = "bedtime");
-
-  // refs.themeIcon.textContent === "bedtime"
-  //   ? (refs.themeIcon.textContent = "wb_sunny")
-  //   : (refs.themeIcon.textContent = "bedtime");
 }
