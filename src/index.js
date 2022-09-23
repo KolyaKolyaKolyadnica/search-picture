@@ -9,9 +9,11 @@ import throttle from "lodash.throttle";
 import { getGoUpBtn } from "./js/goUpBtn";
 
 refs.searchForm.addEventListener("submit", startSearching);
-refs.optionLoad.addEventListener("click", changeLoadMethod);
-refs.themeBtn.addEventListener("click", changeInterfaceTheme);
+refs.optionLoad.addEventListener("change", changeLoadMethod);
+refs.themeBtn.addEventListener("change", changeInterfaceTheme);
 document.addEventListener("scroll", throttle(getGoUpBtn, 500));
 
 startInterfaceTheme();
 startLoadMethod();
+
+console.log(refs.themeBtn.checked);

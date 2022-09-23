@@ -12,6 +12,7 @@ export function startInterfaceTheme() {
     ) {
       removeDarkTheme();
     } else {
+      refs.themeBtn.checked = true;
       addDarkTheme();
     }
   } catch {
@@ -49,7 +50,14 @@ function addDarkTheme() {
   switchIcon();
 }
 function switchIcon() {
-  refs.themeIcon.textContent === "bedtime"
-    ? (refs.themeIcon.textContent = "wb sunny")
+  console.log(refs.themeBtn.checked);
+  console.dir(refs.themeBtn);
+
+  refs.themeBtn.checked
+    ? (refs.themeIcon.textContent = "wb_sunny")
     : (refs.themeIcon.textContent = "bedtime");
+
+  // refs.themeIcon.textContent === "bedtime"
+  //   ? (refs.themeIcon.textContent = "wb_sunny")
+  //   : (refs.themeIcon.textContent = "bedtime");
 }

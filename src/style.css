@@ -98,8 +98,16 @@ button {
   -webkit-appearance: none;
   appearance: none;
   position: absolute;
-  width: 0px;
-  height: 0px;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  border: 0;
+  padding: 0;
+
+  white-space: nowrap;
+  clip-path: inset(100%);
+  clip: rect(0 0 0 0);
+  overflow: hidden;
 }
 .checkbox:focus + .option-load__text {
   box-shadow: 1px 1px 8px #47536f;
@@ -124,7 +132,6 @@ button {
   font-size: 34px;
 }
 .checkbox:focus + .theme__span {
-  width: 35px;
   border: 2px solid #47536f;
   border-radius: 50%;
 }
@@ -348,11 +355,7 @@ button {
     padding-top: 70px;
   }
   .option-load {
-    top: 10px;
     max-width: 150px;
-  }
-  .search-container {
-    bottom: 0;
   }
   .theme {
     top: 25px;
@@ -382,12 +385,5 @@ button {
   }
   .picture-info {
     flex-wrap: wrap;
-  }
-  .option-load {
-    top: 10px;
-    max-width: 150px;
-  }
-  .theme {
-    top: 25px;
   }
 }

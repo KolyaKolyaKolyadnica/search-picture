@@ -542,11 +542,12 @@ var _lodashThrottle = require("lodash.throttle");
 var _lodashThrottleDefault = parcelHelpers.interopDefault(_lodashThrottle);
 var _goUpBtn = require("./js/goUpBtn");
 (0, _refsDefault.default).searchForm.addEventListener("submit", (0, _startSearching.startSearching));
-(0, _refsDefault.default).optionLoad.addEventListener("click", (0, _loadMore.changeLoadMethod));
-(0, _refsDefault.default).themeBtn.addEventListener("click", (0, _interfaceThemeJs.changeInterfaceTheme));
+(0, _refsDefault.default).optionLoad.addEventListener("change", (0, _loadMore.changeLoadMethod));
+(0, _refsDefault.default).themeBtn.addEventListener("change", (0, _interfaceThemeJs.changeInterfaceTheme));
 document.addEventListener("scroll", (0, _lodashThrottleDefault.default)((0, _goUpBtn.getGoUpBtn), 500));
 (0, _interfaceThemeJs.startInterfaceTheme)();
 (0, _loadMore.startLoadMethod)();
+console.log((0, _refsDefault.default).themeBtn.checked);
 
 },{"./js/interfaceTheme.js":"j3Uof","./js/refs":"2WoF2","./js/startSearching":"1aLUQ","./js/loadMore":"1sDp5","lodash.throttle":"bGJVT","./js/goUpBtn":"h3Kz7","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"j3Uof":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
@@ -562,7 +563,10 @@ var _pnotifyJsDefault = parcelHelpers.interopDefault(_pnotifyJs);
 function startInterfaceTheme() {
     try {
         if (!localStorage.interfaceTheme || localStorage.interfaceTheme === "light") removeDarkTheme();
-        else addDarkTheme();
+        else {
+            (0, _refsDefault.default).themeBtn.checked = true;
+            addDarkTheme();
+        }
     } catch  {
         (0, _pnotifyJsDefault.default)("WARNING! Problems with access to local storage");
     }
@@ -596,7 +600,12 @@ function addDarkTheme() {
     switchIcon();
 }
 function switchIcon() {
-    (0, _refsDefault.default).themeIcon.textContent === "bedtime" ? (0, _refsDefault.default).themeIcon.textContent = "wb sunny" : (0, _refsDefault.default).themeIcon.textContent = "bedtime";
+    console.log((0, _refsDefault.default).themeBtn.checked);
+    console.dir((0, _refsDefault.default).themeBtn);
+    (0, _refsDefault.default).themeBtn.checked ? (0, _refsDefault.default).themeIcon.textContent = "wb_sunny" : (0, _refsDefault.default).themeIcon.textContent = "bedtime";
+// refs.themeIcon.textContent === "bedtime"
+//   ? (refs.themeIcon.textContent = "wb_sunny")
+//   : (refs.themeIcon.textContent = "bedtime");
 }
 
 },{"./refs":"2WoF2","./pnotify.js":"ezt33","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"2WoF2":[function(require,module,exports) {
@@ -15065,7 +15074,6 @@ function startLoadMethod() {
 }
 function changeLoadMethod(e) {
     if (e.target.localName !== "input") return;
-    console.log(e.currentTarget);
     if (e.currentTarget.dataset.loadMoreImg === "click") {
         e.currentTarget.dataset.loadMoreImg = "scroll";
         e.currentTarget.children[1].textContent = 'I love "Load more" button!';

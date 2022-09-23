@@ -20,7 +20,7 @@ export function changeLoadMethod(e) {
   if (e.target.localName !== "input") {
     return;
   }
-  console.log(e.currentTarget);
+
   if (e.currentTarget.dataset.loadMoreImg === "click") {
     e.currentTarget.dataset.loadMoreImg = "scroll";
     e.currentTarget.children[1].textContent = 'I love "Load more" button!';
