@@ -10,7 +10,7 @@ For search use [Pixabay](https://pixabay.com/api). And here you can:
 
 - [Material icons](https://google.github.io/material-design-icons/).
 
-- [Element.scrollIntoView()](https://developer.mozilla.org/en-US/docs/Web/- API/Element/scrollIntoView).
+- [Element.scrollIntoView()](https://developer.mozilla.org/en-US/docs/Web/-API/Element/scrollIntoView).
 
 - [pnotify](https://github.com/sciactive/pnotify)
 
