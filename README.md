@@ -1,6 +1,6 @@
 # Hi! It's my site for search picture :)
 
-For search use [Pixabay] (https://pixabay.com/api). And here you can:
+For search use [Pixabay](https://pixabay.com/api). And here you can:
 
 - Choose how to load new pictures (using the Load Button button or infinite scroll);
 - Choose an interface theme;
